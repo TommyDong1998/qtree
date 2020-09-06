@@ -1,6 +1,8 @@
 simple-quadtree
 =====
 
+Fork of https://github.com/asaarinen/qtree with minor fixes on update.
+
 `simple-quadtree` is a minimal quadtree implementation that supports simple `put`, `get`, `remove` and `clear` operations on objects having a `x, y` position and `w, h` dimension. 
 
 Installation
