@@ -217,10 +217,10 @@ function QuadTree(x, y, w, h, options) {
                 var orig = node.c[ci];
                 update_coords(orig, updatedcoords);
                 
-                if( orig.x > node.x + node.w ||
-                    orig.y > node.y + node.h ||
-                    orig.x + orig.w < node.x ||
-                    orig.y + orig.h < node.y ) {
+                if( orig.x >= node.x + node.w ||
+                    orig.y >= node.y + node.h ||
+                    orig.x + orig.w <= node.x ||
+                    orig.y + orig.h <= node.y ) {
 
                     // this object needs to be removed and added
                     node.c.splice(ci, 1);
@@ -238,10 +238,10 @@ function QuadTree(x, y, w, h, options) {
                 update_coords(orig, updatedcoords);
                 
                 // found the object to be updated
-                if( orig.x > node.x + node.w ||
-                    orig.y > node.y + node.h ||
-                    orig.x + orig.w < node.x ||
-                    orig.y + orig.h < node.y ) {
+                if(orig.x >= node.x + node.w 
+                    || orig.y >= node.y + node.h 
+                    || orig.x + orig.w <= node.x 
+                    || orig.y + orig.h <= node.y ) {
 
                     // this object needs to be removed and added 
                     node.l.splice(ci, 1);
@@ -253,7 +253,7 @@ function QuadTree(x, y, w, h, options) {
 
         var leaf = isleaf(node, obj);
         if( !leaf.leaf && leaf.childnode )
-            if( update(leaf.childnode, obj, attr) )
+            if( update(leaf.childnode, obj, attr, updatedcoords) )
                 return true;
         return false;
     }
